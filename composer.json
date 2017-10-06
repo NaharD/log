@@ -1,0 +1,21 @@
+{
+    "name": "nahard/log",
+    "description": "Додаток дозволяє створювати та переглядати помилки, що виникають під час роботи вашої аплікації",
+    "type": "yii2-extension",
+    "keywords": ["yii2","extension"," log error"," logs"," log module"],
+    "license": "LGPL-3.0+",
+    "authors": [
+        {
+            "name": "NaharD",
+            "email": "nagard11@gmail.com"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "nahard\\log\\": ""
+        }
+    }
+}
