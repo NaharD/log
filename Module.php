@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\control\modules\log;
+namespace nahard\log;
 
 use Yii;
 /**
@@ -11,7 +11,7 @@ class Module extends \yii\base\Module
     /**
      * @inheritdoc
      */
-    public $controllerNamespace = 'app\modules\control\modules\log\controllers';
+    public $controllerNamespace = 'nahard\log\controllers';
 
     /**
      * @inheritdoc

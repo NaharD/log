@@ -2,9 +2,6 @@
 
 namespace nahard\log\helpers;
 
-use Yii;
-use yii\web\Application;
-
 class Log
 {
     /**
