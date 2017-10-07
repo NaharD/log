@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model app\common\models\Log */
+/* @var $model nahard\log\models\Log */
 
 $this->title = $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Logs', 'url' => ['index']];
@@ -31,11 +31,14 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'level',
             'category',
-            'log_time:datetime',
+            'created_at:datetime',
+            'updated_at:datetime',
             'ip',
             'message:ntext',
             'var:ntext',
-            'user',
+            'referrer_url:text',
+            'request_url:text',
+            'user_id',
             'status',
         ],
     ]) ?>

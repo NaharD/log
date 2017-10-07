@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model app\common\models\LogSearch */
+/* @var $model nahard\log\models\LogSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
@@ -21,15 +21,21 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'category') ?>
 
-    <?= $form->field($model, 'log_time') ?>
+    <?= $form->field($model, 'created_at') ?>
 
-    <?= $form->field($model, 'ip') ?>
+    <?= $form->field($model, 'updated_at') ?>
+
+    <?php // echo $form->field($model, 'ip') ?>
 
     <?php // echo $form->field($model, 'message') ?>
 
     <?php // echo $form->field($model, 'var') ?>
 
-    <?php // echo $form->field($model, 'user') ?>
+    <?php // echo $form->field($model, 'referrer_url') ?>
+
+    <?php // echo $form->field($model, 'request_url') ?>
+
+    <?php // echo $form->field($model, 'user_id') ?>
 
     <?php // echo $form->field($model, 'status') ?>
 

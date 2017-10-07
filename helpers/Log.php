@@ -1,6 +1,8 @@
 <?php
 
-namespace nahard\log\helpers;
+namespace nahard\log\helpers;
+
+use Yii;
 
 class Log
 {

@@ -1,11 +1,10 @@
 <?php
 
-namespace namespace nahard\log\controllers;
+namespace nahard\log\controllers;
 
-use app\common\models\User;
 use Yii;
-use app\modules\control\modules\log\models\Log;
-use app\modules\control\modules\log\models\LogSearch;
+use nahard\log\models\Log;
+use nahard\log\models\LogSearch;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -16,8 +15,6 @@ use yii\filters\VerbFilter;
  */
 class LogController extends Controller
 {
-	public $layout = '@app/modules/control/views/layouts/main';
-
 	/**
      * @inheritdoc
      */
@@ -32,33 +29,7 @@ class LogController extends Controller
             ],
 			'access' => [
 				'class' => AccessControl::className(),
-				'rules' => [
-					[
-						'actions' => ['view'],
-						'allow' => true,
-						'roles' => ['logView'],
-					],
-					[
-						'actions' => ['index'],
-						'allow' => true,
-						'roles' => ['logUpdate'],
-					],
-					[
-						'actions' => ['update'],
-						'allow' => true,
-						'roles' => ['logUpdate'],
-					],
-					[
-						'actions' => ['create'],
-						'allow' => true,
-						'roles' => ['logCreate'],
-					],
-					[
-						'actions' => ['delete'],
-						'allow' => true,
-						'roles' => ['logDelete'],
-					],
-				],
+				'rules' => $this->module->accessRules,
 			],
         ];
     }
@@ -86,9 +57,7 @@ class LogController extends Controller
     public function actionView($id)
     {
 		$logModel = $this->findModel($id);
-
-		if (Yii::$app->user->can(User::ROLE_ADMIN))
-			$logModel->makeReaded();
+		$logModel->makeReaded();
 
         return $this->render('view', [
             'model' => $logModel,

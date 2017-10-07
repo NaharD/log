@@ -12,7 +12,7 @@ class DbTarget extends \yii\log\DbTarget
     public function export()
     {
         foreach ($this->messages as $message) {
-            list($text, $level, $category, $timestamp) = $message;
+            list($text, $level, $category) = $message;
             $extracted = [
                 'msg'   => '',
                 'var' => null,
@@ -22,11 +22,16 @@ class DbTarget extends \yii\log\DbTarget
                     if (!is_string($text['msg'])) {
                         $extracted['msg'] = VarDumper::export($text['msg']);
                     } else {
-                        $extracted['msg'] = VarDumper::dumpAsString($text['msg'], 20, true);
+                        $extracted['msg'] = $text['msg'];
                     }
                 }
                 if (isset($text['var'])) {
-                    $extracted['var'] = $text['var'];
+                	if (is_array($text['var']))
+                    	$extracted['var'] = VarDumper::export($text['var']);
+                	elseif (is_object($text['var']))
+						$extracted['var'] = json_encode($text['var'], JSON_PRETTY_PRINT);
+                	else
+						$extracted['var'] = $text['var'];
                 }
             } elseif (is_string($text)) {
                 $extracted['msg'] = $text;
@@ -34,7 +39,7 @@ class DbTarget extends \yii\log\DbTarget
                 $extracted['msg'] = VarDumper::export($text);
             }
 
-            $logModel 			= new nahard\log\Log;
+			$logModel 			= new \nahard\log\models\Log;
 			$logModel->level    = $level;
 			$logModel->category = $category;
 			$logModel->message  = $extracted['msg'];

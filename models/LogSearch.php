@@ -1,14 +1,14 @@
 <?php
 
-namespace nahard\log\models;
+namespace nahard\log\models;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\modules\control\modules\log\models\Log;
+use nahard\log\models\Log;
 
 /**
- * LogSearch represents the model behind the search form of `app\common\models\Log`.
+ * LogSearch represents the model behind the search form of `nahard\log\models\Log`.
  */
 class LogSearch extends Log
 {
@@ -18,8 +18,8 @@ class LogSearch extends Log
     public function rules()
     {
         return [
-            [['id', 'level', 'log_time', 'user_id', 'status'], 'integer'],
-            [['category', 'ip', 'message', 'var'], 'safe'],
+            [['id', 'level', 'created_at', 'updated_at', 'user_id', 'status'], 'integer'],
+            [['category', 'ip', 'message', 'var', 'referrer_url', 'request_url'], 'safe'],
         ];
     }
 
@@ -48,7 +48,7 @@ class LogSearch extends Log
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
 			'sort' => ['defaultOrder' => ['id' => SORT_DESC]]
-        ]);
+		]);
 
         $this->load($params);
 
@@ -62,6 +62,8 @@ class LogSearch extends Log
         $query->andFilterWhere([
             'id' => $this->id,
             'level' => $this->level,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
             'user_id' => $this->user_id,
             'status' => $this->status,
         ]);
@@ -69,7 +71,9 @@ class LogSearch extends Log
         $query->andFilterWhere(['like', 'category', $this->category])
             ->andFilterWhere(['like', 'ip', $this->ip])
             ->andFilterWhere(['like', 'message', $this->message])
-            ->andFilterWhere(['like', 'var', $this->var]);
+            ->andFilterWhere(['like', 'var', $this->var])
+            ->andFilterWhere(['like', 'referrer_url', $this->referrer_url])
+            ->andFilterWhere(['like', 'request_url', $this->request_url]);
 
         return $dataProvider;
     }

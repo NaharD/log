@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\common\models\LogSearch */
+/* @var $searchModel nahard\log\models\LogSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Logs';
@@ -25,22 +25,18 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
+            'category',
+            'message:ntext',
+            'created_at:datetime',
+            'user_id',
 //            'id',
 //            'level',
-//            'category',
-//            'message:raw',
-            [
-                'attribute' => 'message',
-                'format' => 'ntext',
-                'value' => function ($model) {
-                    return substr($model->message, 0, 400);
-                }
-            ],
-            'log_time:datetime',
+//            'updated_at:datetime',
 //            'ip',
-            //'var:ntext',
-            //'user',
-            //'status',
+//            'var:ntext',
+//            'referrer_url:ntext',
+//            'request_url:ntext',
+//            'status',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

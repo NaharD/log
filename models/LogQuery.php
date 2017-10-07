@@ -1,6 +1,6 @@
 <?php
 
-namespace nahard\log\models;
+namespace nahard\log\models;
 
 /**
  * This is the ActiveQuery class for [[LogGii]].

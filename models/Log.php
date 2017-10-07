@@ -1,6 +1,6 @@
 <?php
 
-namespace nahard\log\models;
+namespace nahard\log\models;
 
 use Yii;
 use yii\behaviors\TimestampBehavior;
@@ -23,7 +23,7 @@ class Log extends LogGii
 
 			$this->user_id 		= Yii::$app->user->id ?? null;
 			$this->referrer_url = Yii::$app->getRequest()->getReferrer() ?? null;
-			$this->request_url 	= Yii::$app->getRequest()->getUrl() ?? null;
+			$this->request_url 	= Yii::$app->getRequest()->getAbsoluteUrl() ?? null;
 			$this->ip       	= Yii::$app->getRequest()->getUserIP() ?? null;
 
 			return true;
