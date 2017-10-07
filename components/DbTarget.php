@@ -2,6 +2,7 @@
 
 namespace nahard\log\components;
 
+use Yii;
 use yii\helpers\VarDumper;
 
 class DbTarget extends \yii\log\DbTarget
@@ -39,11 +40,13 @@ class DbTarget extends \yii\log\DbTarget
                 $extracted['msg'] = VarDumper::export($text);
             }
 
-			$logModel 			= new \nahard\log\models\Log;
-			$logModel->level    = $level;
-			$logModel->category = $category;
-			$logModel->message  = $extracted['msg'];
-			$logModel->var		= $extracted['var'];
+			$logModel 				= new \nahard\log\models\Log;
+			$logModel->level    	= $level;
+			$logModel->category 	= $category;
+			$logModel->message  	= $extracted['msg'];
+			$logModel->var			= $extracted['var'];
+			$logModel->request_url 	= Yii::$app->getRequest()->getAbsoluteUrl();
+			$logModel->referrer_url = Yii::$app->getRequest()->getReferrer();
 			$logModel->save();
         }
     }

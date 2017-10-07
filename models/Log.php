@@ -22,9 +22,7 @@ class Log extends LogGii
 		if (parent::beforeSave($insert)) {
 
 			$this->user_id 		= Yii::$app->user->id ?? null;
-			$this->referrer_url = Yii::$app->getRequest()->getReferrer() ?? null;
-			$this->request_url 	= Yii::$app->getRequest()->getAbsoluteUrl() ?? null;
-			$this->ip       	= Yii::$app->getRequest()->getUserIP() ?? null;
+			$this->ip       	= Yii::$app->getRequest()->getUserIP();
 
 			return true;
 		}
