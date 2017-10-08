@@ -21,8 +21,7 @@ class Log extends LogGii
 	{
 		if (parent::beforeSave($insert)) {
 
-			$this->user_id 		= Yii::$app->user->id ?? null;
-			$this->ip       	= Yii::$app->getRequest()->getUserIP();
+			// code
 
 			return true;
 		}
