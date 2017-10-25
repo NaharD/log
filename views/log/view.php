@@ -34,7 +34,11 @@ $this->params['breadcrumbs'][] = $this->title;
             'created_at:datetime',
             'updated_at:datetime',
             'ip',
-            'message:ntext',
+			[
+				'attribute' => 'message',
+				'format' => 'ntext',
+				'contentOptions' => ['style' => 'word-break:break-all'],
+			],
             'var:ntext',
             'referrer_url:text',
             'request_url:text',

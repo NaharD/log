@@ -26,7 +26,14 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'category',
-            'message:ntext',
+            [
+                'attribute' => 'message',
+                'format' => 'ntext',
+                'contentOptions' => ['style' => 'word-break:break-all'],
+                'value' => function($model) {
+                    return substr($model->message, 0, 400);
+                }
+            ],
             'created_at:datetime',
             'user_id',
 //            'id',
