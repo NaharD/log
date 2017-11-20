@@ -32,6 +32,12 @@ class Log extends LogGii
 	{
 		return self::find()->statusUnread()->count();
 	}
+	
+	static function getFreshLogCountWidget()
+	{
+		if ($count =  self::find()->statusUnread()->count())
+			return "<small class=\"label pull-right bg-green\">{$count}</small></span>";
+	}
 
 	static function getFreshLogMessages()
 	{
