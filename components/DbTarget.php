@@ -48,6 +48,7 @@ class DbTarget extends \yii\log\DbTarget
 			$logModel->request_url 	= Yii::$app->getRequest()->absoluteUrl ?? null;
 			$logModel->referrer_url = Yii::$app->getRequest()->referrer ?? null;
 			$logModel->ip       	= Yii::$app->getRequest()->userIP ?? null;
+			$logModel->user_agent	= Yii::$app->getRequest()->userAgent ?? null;
 			$logModel->user_id 		= Yii::$app->user->id ?? null;
 			$logModel->save();
 		}

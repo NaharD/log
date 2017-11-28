@@ -19,6 +19,7 @@ class m171003_173213_create_log_table extends Migration
 			'created_at' => $this->integer(),
 			'updated_at' => $this->integer(),
 			'ip' => $this->string(),
+			'user_agent' => $this->text(),
 			'message' => $this->text(),
 			'var' => $this->text(),
 			'referrer_url' => $this->text(),

@@ -11,6 +11,7 @@ namespace nahard\log\models;
  * @property int $created_at
  * @property int $updated_at
  * @property string $ip
+ * @property string $user_agent
  * @property string $message
  * @property string $var
  * @property string $referrer_url
@@ -35,7 +36,7 @@ class LogGii extends \yii\db\ActiveRecord
 	{
 		return [
 			[['level', 'created_at', 'updated_at', 'user_id', 'status'], 'integer'],
-			[['message', 'var', 'referrer_url', 'request_url'], 'string'],
+			[['user_agent', 'message', 'var', 'referrer_url', 'request_url'], 'string'],
 			[['category', 'ip'], 'string', 'max' => 255],
 		];
 	}
@@ -52,6 +53,7 @@ class LogGii extends \yii\db\ActiveRecord
 			'created_at' => 'Created At',
 			'updated_at' => 'Updated At',
 			'ip' => 'Ip',
+			'user_agent' => 'User Agent',
 			'message' => 'Message',
 			'var' => 'Var',
 			'referrer_url' => 'Referrer Url',
