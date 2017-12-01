@@ -39,9 +39,9 @@ class Log extends LogGii
 			return "<small class=\"label pull-right bg-green\">{$count}</small></span>";
 	}
 
-	static function getFreshLogMessages()
+	static function getFreshLogMessages($limit=null)
 	{
-		return self::find()->statusUnread()->orderBy(['id'=>SORT_DESC])->all();
+		return self::find()->statusUnread()->orderBy(['id'=>SORT_DESC])->limit($limit)->all();
 	}
 
 	public function makeReaded()
