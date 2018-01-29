@@ -36,7 +36,7 @@ class LogGii extends \yii\db\ActiveRecord
 	{
 		return [
 			[['level', 'created_at', 'updated_at', 'user_id', 'status'], 'integer'],
-			[['user_agent', 'message', 'var', 'referrer_url', 'request_url'], 'string'],
+			[['user_agent', 'message', 'referrer_url', 'request_url'], 'string'],
 			[['category', 'ip'], 'string', 'max' => 255],
 		];
 	}
