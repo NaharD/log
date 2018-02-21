@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use nahard\log\models\Log;
 
 /* @var $this yii\web\View */
 /* @var $searchModel nahard\log\models\LogSearch */
@@ -22,6 +23,10 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+		'rowOptions' => function ($model) {
+			if (!$model->isReaded())
+				return ['class' => 'bg-yellow'];
+		},
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
@@ -43,7 +48,13 @@ $this->params['breadcrumbs'][] = $this->title;
 //            'var:ntext',
 //            'referrer_url:ntext',
 //            'request_url:ntext',
-//            'status',
+			[
+				'attribute' => 'status',
+                'filter' => Log::getStatusList(),
+				'value' => function($model) {
+					return Log::getStatusLabel($model->status);
+				}
+			],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

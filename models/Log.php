@@ -9,6 +9,20 @@ class Log extends LogGii
 {
 	const STATUS_UNREAD = 0;
 	const STATUS_READ = 1;
+	const STATUS_LIST = [
+		self::STATUS_UNREAD		=> 'Не прочитано',
+		self::STATUS_READ		=> 'Прочитано',
+	];
+	
+	public static function getStatusList($label=true)
+	{
+		return self::STATUS_LIST;
+	}
+	
+	public static function getStatusLabel($statusId)
+	{
+		return self::STATUS_LIST[$statusId] ?? 'Невідомий';
+	}
 
 	public function behaviors()
 	{
@@ -48,5 +62,10 @@ class Log extends LogGii
 	{
 		$this->status = self::STATUS_READ;
 		return $this->save();
+	}
+	
+	public function isReaded()
+	{
+		return $this->status == self::STATUS_READ;
 	}
 }
