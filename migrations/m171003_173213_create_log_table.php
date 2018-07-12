@@ -27,6 +27,16 @@ class m171003_173213_create_log_table extends Migration
 			'user_id' => $this->integer(),
 			'status' => $this->integer()->defaultValue(0),
         ]);
+		$this->createIndex(
+			'idx-log-status',
+			'log',
+			'status'
+		);
+		$this->createIndex(
+			'idx-log-user_id',
+			'log',
+			'user_id'
+		);
     }
 
     /**
@@ -34,6 +44,14 @@ class m171003_173213_create_log_table extends Migration
      */
     public function down()
     {
+		$this->dropIndex(
+			'idx-log-status',
+			'log'
+		);
+		$this->dropIndex(
+			'idx-log-user_id',
+			'log'
+		);
         $this->dropTable('log');
     }
 }
