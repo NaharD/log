@@ -114,6 +114,19 @@ class LogController extends Controller
         return $this->redirect(['index']);
     }
 
+	/**
+	 * Позначає помилку прочитаною
+	 * Допоміжний медот, котрий дозволяє мітити зрозумілі помилки пакунками без перезавантаження сторінки
+	 *
+	 * @param array $ids Перелік ідентифікаторів помилок
+	 */
+	public function actionMakeRead(array $ids=[])
+	{
+		foreach ($ids as $id) {
+			$this->findModel($id)->makeReaded();
+		}
+	}
+
     /**
      * Finds the Log model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.

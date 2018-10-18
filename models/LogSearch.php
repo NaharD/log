@@ -47,6 +47,9 @@ class LogSearch extends Log
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+			'pagination' => [
+				'pageSize' => Yii::$app->request->get('dynamicPageSize', 20),
+			],
 			'sort' => ['defaultOrder' => ['id' => SORT_DESC]]
 		]);
 
