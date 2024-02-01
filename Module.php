@@ -14,6 +14,7 @@ class Module extends \yii\base\Module
      * @inheritdoc
      */
     public $controllerNamespace = 'nahard\log\controllers';
+    public $userCallback;
     public $accessRules = [
 		[
 			'actions' => ['view'],
